@@ -1,0 +1,40 @@
+[
+  {
+    "name": "jenkins-container-qa",
+    "image": "jenkins/jenkins:lts",
+    "essential": true,
+    "portMappings": [
+      {
+        "protocol": "tcp",
+        "containerPort": 8080,
+        "hostPort": 8080
+      },
+
+      {
+        "protocol": "tcp",
+        "containerPort": 50000,
+        "hostPort": 50000
+      }
+    ],
+
+    "mountPoints": [
+      {
+          "sourceVolume": "jenkins-home",
+          "containerPath": "/var/jenkins_home"
+      }
+    ],
+
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "jenkins-qa",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "jenkins"
+      }
+  }
+
+    
+
+  }
+
+]
